@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PokeList from "./components/PokeList/PokeList"
+// import PokeDetail from "./components/PokeDetail/PokeDetail"
+import PokeDetail from "./components/PokeDetail/PokeDetail"
+import './App.scss';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ScrollMemory from 'react-router-scroll-memory'
 
-function App() {
+class App extends React.Component{
+  
+  render(){
   return (
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Simple Pokémon Pokédex</h1>
       </header>
+      <body className="App-body">
+        <Router>
+          <Route exact path="/" component={PokeList}/>
+          <Route exact path="/detail/:id" component={PokeDetail}/>
+          <ScrollMemory />
+        </Router>
+      </body>
     </div>
-  );
+  )
+  }
 }
-
 export default App;
+
