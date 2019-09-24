@@ -1,6 +1,8 @@
 
 # Simple Pokémon Pokédex
 
+Hosted Version : [Here](https://faishalrachman.github.io/)
+
     * Infinite Scroll Pokémon List every 10 elements
     * Pokémon detail page
     * Using localStorage for saving last state from PokeList
