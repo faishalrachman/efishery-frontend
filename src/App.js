@@ -12,12 +12,12 @@ class App extends React.Component{
   
   render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Simple Pokémon Pokédex</h1>
-      </header>
+    <div >
+<nav className="navbar navbar-expand-lg navbar-light bg-dark">
+  <a className="navbar-brand" style={{color:'white',fontSize:'20px'}}>Simple Pokémon Pokédex </a>
+  </nav>
       <body className="App-body text-center">
-        <Container fluid className="text-center">
+        <Container fluid>
           <Row>
             <Col xs md lg="12">
         <Router>

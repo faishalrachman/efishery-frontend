@@ -1,4 +1,5 @@
-##Simple Pokémon Pokédex
+
+# Simple Pokémon Pokédex
 
     * Infinite Scroll Pokémon List every 10 elements
     * Pokémon detail page
