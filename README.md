@@ -1,10 +1,11 @@
-#Simple Pokémon Pokédex
+##Simple Pokémon Pokédex
 
     * Infinite Scroll Pokémon List every 10 elements
     * Pokémon detail page
     * Using localStorage for saving last state from PokeList
     * Using ScrollMemory for remember last scroll position
     * Using SCSS for easier color changing (create baseColor, secondColor, etc)
+    * Using serviceWorker.register() to load faster
 
         
 
