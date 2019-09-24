@@ -1,7 +1,6 @@
 import React from 'react'
 import pokeService from '../../services/PokeService'
-import listToParagraph from '../../util/listToParagraph'
-
+import {Button} from 'react-bootstrap'
 function Evolution(props){
     return (
         <div style={{margin: "30px"}}>
@@ -59,7 +58,8 @@ class PokeDetail extends React.Component {
         // this.context.router.history.goBack()
     }
     componentDidMount() {
-        pokeService.getPoke(this.props.location.pathname.split("/")[2]).then((data) => {
+        const id = this.props.id || this.props.location.pathname.split("/")[2]
+        pokeService.getPoke(id).then((data) => {
             this.setState({
                 is_loading: false,
                 info: data
@@ -71,7 +71,7 @@ class PokeDetail extends React.Component {
         return (
             <div>
                 <h2>Pokémon Detail Information</h2>
-                <button onClick={this.handleClick}>Back to Main Menu</button>
+                <Button onClick={this.handleClick}>Back to Main Menu</Button>
                 {this.state.is_loading && <p>Loading Information...</p>}
                 {!this.state.is_loading &&
                     <div>

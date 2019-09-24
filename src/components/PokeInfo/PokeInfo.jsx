@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import listToParagraph from '../../util/listToParagraph'
-
+import "./PokeInfo.scss"
 // function PokeInfo (props){
 // }
 class PokeInfo extends React.Component{
@@ -12,16 +11,16 @@ class PokeInfo extends React.Component{
         return (
             <tr>
                 <td>
-                <img src={this.props.info.image} style={{display : "inline-block", width: "40px", height: "30px"}}/>
-                <td>{this.props.info.number}</td>               
+                <img src={this.props.info.image} className="pokeinfo-img"/>
+                <p className="p">{this.props.info.number}</p>
                 </td>
                 <td><Link 
                 to={`detail/${this.props.info.id}`}
                 >{this.props.info.name}</Link></td>  
-                <td>{listToParagraph(this.props.info.types)}</td>
+                <td>{this.props.info.types.join(", ")}</td>
                 <td>{this.props.info.maxHP}</td>
                 <td>{this.props.info.maxCP}</td>
-                <td>{listToParagraph(this.props.info.resistant)}</td>
+                <td>{this.props.info.resistant.join(", ")}</td>
             </tr>
     
         )

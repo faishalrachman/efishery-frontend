@@ -2,7 +2,8 @@ import React from 'react'
 import PokeInfo from '../PokeInfo/PokeInfo'
 import pokeService from '../../services/PokeService'
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import { Table } from 'react-bootstrap'
+import './PokeList.scss'
 class PokeList extends React.Component {
     constructor(props) {
         super(props)
@@ -25,17 +26,21 @@ class PokeList extends React.Component {
     }
 
     componentDidMount() {
-        pokeService.getAll(this.state.page)
-            .then((pokeData) => {
-                this.setState((prevState) => {
-                    return {
-                        listPokemon: pokeData,
-                        page: 1,
-                        is_loading: false
-                    }
+        if (this.state.listPokemon.length < 10) {
+
+            pokeService.getAll(this.state.page)
+                .then((pokeData) => {
+                    this.setState((prevState) => {
+                        return {
+                            listPokemon: pokeData,
+                            page: 1,
+                            is_loading: false
+                        }
+                    })
+                    // console.log(this.state)
                 })
-                // console.log(this.state)
-            })
+
+        }
 
     }
     componentWillUnmount() {
@@ -56,19 +61,18 @@ class PokeList extends React.Component {
     }
 
     render() {
-
         return (
-            <div style={{ textAlign: "left" }}>
+            <div>
                 <h2>Pokédex Master Data</h2>
-                <table>
+                {!this.state.is_loading &&
+                    <InfiniteScroll
+                        dataLength={this.state.listPokemon.length}
+                        next={this.fetchMoreData}
+                        hasMore={true}
+                        loader={<div className="loader"></div>}
+                    >
+                        <Table bordered striped className="table-centered">
 
-                    {!this.state.is_loading &&
-                        <InfiniteScroll
-                            dataLength={this.state.listPokemon.length}
-                            next={this.fetchMoreData}
-                            hasMore={true}
-                            loader={<h4>Loading...</h4>}
-                        >
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -83,11 +87,12 @@ class PokeList extends React.Component {
                                 {this.state.listPokemon.map((data, i) => {
                                     return <PokeInfo info={data} key={i} />
                                 })}
-                            </tbody></InfiniteScroll>
+                            </tbody>
+                        </Table>
+                    </InfiniteScroll>
 
-                    }
-                    {this.state.is_loading && <p>Loading...</p>}
-                </table>
+                }
+                {this.state.is_loading && <p>Loading...</p>}
             </div>
         )
     }
